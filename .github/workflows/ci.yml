@@ -6,13 +6,13 @@ on:
     branches:
       - 'main' # Replace with the name of your specific branch
     paths:
-      - 'postman/*.json'   # Path to your Postman collection and environment files (or adjust as per your repo structure)
-      - '**/*.js'          # Path to trigger when any code changes
-      
-# Add this to enable manual triggering of the workflow
-  workflow_dispatch:
+      - 'postman/*.json'  # Path to your Postman collection and environment files (or adjust as per your repo structure)
+      - '**/*.js'         # Path to trigger when any code changes
+
+  workflow_dispatch:  # Add this to enable manual triggering of the workflow
+
 jobs:
-  run-newman-tests:  # Make sure this indentation is correct
+  run-newman-tests:  # Correct indentation here
     runs-on: ubuntu-latest
 
     steps:
@@ -26,34 +26,24 @@ jobs:
         with:
           node-version: '14'
 
-    # 4. Install Newman
-    - name: Install Newman
-      run: npm install -g newman
+      # 4. Install Newman
+      - name: Install Newman
+        run: npm install -g newman
 
-    # Execute Newman to run Postman tests
-    - name: Run Postman collection tests with Newman
-      run: |
-        newman run postman/BaaS Dev.postman_collection.json \
-        --folder "IntegrationTests" \
-        -e postman/DevelopmentConsolidated.postman_environment.json \
-        --reporters cli,junit \
-        --reporter-junit-export results.xml
-      continue-on-error: false # This will make the pipeline fail if tests fail
+      # 5. Execute Newman to run Postman tests
+      - name: Run Postman collection tests with Newman
+        run: |
+          newman run postman/BaaS_Dev.postman_collection.json \
+            --folder "IntegrationTests" \
+            -e postman/DevelopmentConsolidated.postman_environment.json \
+            --reporters cli,junit \
+            --reporter-junit-export results.xml
 
+      # 6. Mark the workflow status green or red based on test results
+      - name: Set status based on Newman result (failure)
+        if: failure()
+        run: echo "Some tests have failed. Check the results."
 
-    # 6. Upload test results (Optional - for viewing JUnit reports)
-    - name: Upload Test Results
-      if: always()  # Ensure this step runs even if tests fail
-      uses: actions/upload-artifact@v2
-      with:
-        name: newman-test-results
-        path: results.xml
-
-    # 7. Mark the workflow status green or red based on test results
-    - name: Set status for failed tests
-    if: failure()  # Check if the tests failed
-    run: echo "Some tests have failed. Check the results."
-
-    - name: Set status for successful tests
-    if: success()  # Check if the tests passed
-    run: echo "All tests passed successfully!"
+      - name: Set status based on Newman result (success)
+        if: success()
+        run: echo "All tests passed successfully!"
