@@ -31,16 +31,16 @@ jobs:
     - name: Install Newman
       run: npm install -g newman
 
-    # 5. Execute Newman to run Postman tests
-    - name: Run Postman collection tests with Newman
-      run: |
-      newman run postman/BaaS Dev.postman_collection.json \
-        --folder "IntegrationTests" \
-        -e postman/DevelopmentConsolidated.postman_environment.json \
-        --reporters cli,junit \
-        --reporter-junit-export results.xml
+# Execute Newman to run Postman tests
+- name: Run Postman collection tests with Newman
+  run: |
+    newman run postman/BaaS Dev.postman_collection.json \
+    --folder "IntegrationTests" \
+    -e postman/DevelopmentConsolidated.postman_environment.json \
+    --reporters cli,junit \
+    --reporter-junit-export results.xml
+  continue-on-error: false # This will make the pipeline fail if tests fail
 
-      continue-on-error: false  # This will make the pipeline fail if tests fail
 
     # 6. Upload test results (Optional - for viewing JUnit reports)
     - name: Upload Test Results
