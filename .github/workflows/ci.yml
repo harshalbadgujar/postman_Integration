@@ -51,8 +51,10 @@ jobs:
         path: results.xml
 
     # 7. Mark the workflow status green or red based on test results
-    - name: Set status based on Newman result
-      if: failure()
-      run: echo "Some tests have failed. Check the results."
-      if: success()
-      run: echo "All tests passed successfully!"
+    - name: Set status for failed tests
+    if: failure()  # Check if the tests failed
+    run: echo "Some tests have failed. Check the results."
+
+    - name: Set status for successful tests
+    if: success()  # Check if the tests passed
+    run: echo "All tests passed successfully!"
