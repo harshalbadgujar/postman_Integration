@@ -4,7 +4,7 @@ name: Postman Tests Pipeline
 on:
   push:
     branches:
-      - 'your-branch-name' # Replace with the name of your specific branch
+      - 'main' # Replace with the name of your specific branch
     paths:
       - 'postman/*.json'   # Path to your Postman collection and environment files (or adjust as per your repo structure)
       - '**/*.js'          # Path to trigger when any code changes
