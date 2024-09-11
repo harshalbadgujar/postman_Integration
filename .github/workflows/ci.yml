@@ -8,7 +8,10 @@ on:
     paths:
       - 'postman/*.json'   # Path to your Postman collection and environment files (or adjust as per your repo structure)
       - '**/*.js'          # Path to trigger when any code changes
-
+      
+ # Add this to enable manual triggering of the workflow
+  workflow_dispatch:
+  
 jobs:
   run-newman-tests:
     runs-on: ubuntu-latest
