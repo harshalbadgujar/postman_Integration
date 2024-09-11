@@ -10,8 +10,7 @@ on:
       - '**/*.js'          # Path to trigger when any code changes
       
 # Add this to enable manual triggering of the workflow
-workflow_dispatch:
-  
+  workflow_dispatch:
 jobs:
   run-newman-tests:  # Make sure this indentation is correct
     runs-on: ubuntu-latest
