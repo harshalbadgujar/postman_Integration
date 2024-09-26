@@ -38,8 +38,27 @@ jobs:
             -e DevelopmentConsolidated.postman_environment.json --ignore-redirects \
             --reporters cli,junit \
             --reporter-junit-export results.xml
+            
+      # 6. Install Allure for report generation
+      - name: Install Allure
+        run: |
+          sudo apt-add-repository ppa:qameta/allure
+          sudo apt-get update
+          sudo apt-get install allure
 
-      # 6. Mark the workflow status green or red based on test results
+      # 7. Generate Allure report from the Newman JUnit XML
+      - name: Generate Allure Report
+        run: |
+          allure generate --clean ./results.xml -o allure-report
+
+      # 8. Upload Allure report as an artifact
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: allure-report
+          path: allure-report
+          
+      # 9. Mark the workflow status green or red based on test results
       - name: Set status based on Newman result (failure)
         if: failure()
         run: echo "Some tests have failed. Check the results."
