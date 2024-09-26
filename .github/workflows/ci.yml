@@ -12,7 +12,7 @@ on:
   workflow_dispatch:  # Add this to enable manual triggering of the workflow
 
 jobs:
-  run-newman-tests:  # Correct indentation here
+  run_newman_tests:  # Correct indentation here
     runs-on: ubuntu-latest
 
     steps:
