@@ -42,9 +42,10 @@ jobs:
       # 6. Install Allure for report generation
       - name: Install Allure
         run: |
-          sudo apt-add-repository ppa:qameta/allure
-          sudo apt-get update
-          sudo apt-get install allure
+          curl -o allure.tgz -L https://github.com/allure-framework/allure2/releases/download/2.20.1/allure-2.20.1.tgz
+          tar -zxvf allure.tgz
+          sudo mv allure-2.20.1 /opt/allure
+          sudo ln -s /opt/allure/bin/allure /usr/bin/allure
 
       # 7. Generate Allure report from the Newman JUnit XML
       - name: Generate Allure Report
