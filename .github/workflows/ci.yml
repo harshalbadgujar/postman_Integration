@@ -35,7 +35,7 @@ jobs:
         run: |
           newman run BaaS_Dev.postman_collection.json \
             --folder "IntegrationTests" \
-            -e DevelopmentConsolidated.postman_environment.json \
+            -e DevelopmentConsolidated.postman_environment.json --ignore-redirects \
             --reporters cli,junit \
             --reporter-junit-export results.xml
 
