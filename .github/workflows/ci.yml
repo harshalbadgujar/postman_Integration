@@ -56,7 +56,7 @@ jobs:
       - name: Deploy to GitHub Pages
         run: |
           git config --global user.email "harshalbadgujar75@gmail.com"
-          git config --global user.name "harshal"
+          git config --global user.name "harshalbadgujar"
           git clone --branch gh-pages https://github.com/${{ github.repository }} gh-pages
           rm -rf gh-pages/*
           cp -r allure-report/* gh-pages/
