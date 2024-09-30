@@ -16,6 +16,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
+      # Add this step before pushing to a branch
+      - name: Setup Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      # Add this step to use GITHUB_TOKEN for authentication
+      - name: Push changes to repository
+        run: |
+          git add .
+          git commit -m "Auto-commit: Upload Allure Report"
+          git push origin gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
       # 2. Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v2
