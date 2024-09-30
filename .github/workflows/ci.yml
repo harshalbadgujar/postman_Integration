@@ -25,16 +25,7 @@ jobs:
           
       # 2. Checkout the repository
       - name: Checkout code
-        uses: actions/checkout@v2
-        
-       # Add this step to use GITHUB_TOKEN for authentication
-      - name: Push changes to repository
-        run: |
-          git add .
-          git commit -m "Auto-commit: Upload Allure Report"
-          git push origin gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+        uses: actions/checkout@v2  
 
       # 3. Set up Node.js environment
       - name: Setup Node.js
@@ -67,6 +58,15 @@ jobs:
       - name: Generate Allure Report
         run: |
           allure generate --clean ./results.xml -o allure-report
+          
+       # Add this step to use GITHUB_TOKEN for authentication
+      - name: Push changes to repository
+        run: |
+          git add .
+          git commit -m "Auto-commit: Upload Allure Report"
+          git push origin gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       # 8. Deploy Allure Report to GitHub Pages
       - name: Deploy to GitHub Pages
