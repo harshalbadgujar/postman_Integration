@@ -58,6 +58,15 @@ jobs:
       - name: Generate Allure Report
         run: |
           allure generate --clean ./results.xml -o allure-report
+      
+      - name: Set up Git user
+        run: |
+          git config --global user.email "harshalbadgujar75@gmail.com"
+          git config --global user.name "harshalbadgujar"
+      
+      - name: Create or switch to branch
+        run: |
+          git checkout -b gh-pages || git checkout gh-pages
           
        # Add this step to use GITHUB_TOKEN for authentication
       - name: Push changes to repository
@@ -71,8 +80,6 @@ jobs:
       # 8. Deploy Allure Report to GitHub Pages
       - name: Deploy to GitHub Pages
         run: |
-          git config --global user.email "harshalbadgujar75@gmail.com"
-          git config --global user.name "harshalbadgujar"
           git clone --branch gh-pages https://github.com/${{ github.repository }} gh-pages
           rm -rf gh-pages/*
           cp -r allure-report/* gh-pages/
