@@ -36,6 +36,7 @@ jobs:
       # 4. Install Newman
       - name: Install Newman
         run: npm install -g newman
+        run: npm install -g newman-reporter-allure
 
       # 5. Execute Newman to run Postman tests
       - name: Run Postman collection tests with Newman
