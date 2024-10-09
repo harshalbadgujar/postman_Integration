@@ -45,6 +45,7 @@ jobs:
             -e DevelopmentConsolidated.postman_environment.json --ignore-redirects \
             --reporters cli,junit \
             --reporter-junit-export results.xml
+            --reporter-allure-export output/allure-results
             
       # 6. Install Allure for report generation
       - name: Install Allure
@@ -77,26 +78,26 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Post a comment with report link
-        uses: actions/github-script@v3
-        with:
-          script: |
-            const repo = context.payload.repository;
-            console.log('Repo owner:', repo.owner.login);
-            console.log('Repo name:', repo.name);
-            console.log('Issue number:', context.issue.number);
+      # - name: Post a comment with report link
+      #   uses: actions/github-script@v3
+      #   with:
+      #     script: |
+      #       const repo = context.payload.repository;
+      #       console.log('Repo owner:', repo.owner.login);
+      #       console.log('Repo name:', repo.name);
+      #       console.log('Issue number:', context.issue.number);
 
-            const report_url = `https://${repo.owner.login}.github.io/${repo.name}`;
-            console.log('Report URL:', report_url);
+      #       const report_url = `https://${repo.owner.login}.github.io/${repo.name}`;
+      #       console.log('Report URL:', report_url);
 
-            github.issues.createComment({
-               issue_number: context.issue.number,
-               owner: repo.owner.login,
-               repo: repo.name,
-               body: `✅ [Allure Report](${report_url}) is available.`
-             }).catch(error => {
-               console.error('Error posting comment:', error);
-            });
+      #       github.issues.createComment({
+      #          issue_number: context.issue.number,
+      #          owner: repo.owner.login,
+      #          repo: repo.name,
+      #          body: `✅ [Allure Report](${report_url}) is available.`
+      #        }).catch(error => {
+      #          console.error('Error posting comment:', error);
+      #       });
 
           
       # 10. Mark the workflow status green or red based on test results
