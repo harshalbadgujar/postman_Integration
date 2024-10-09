@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="BaaS Dev" tests="5" time="4.669">
+  <testsuite name="IntegrationTests / Login-magw-v2 / Login/Signout" id="6c8531fa-5277-4183-a159-b3c4ce06fe97" timestamp="2024-10-09T09:42:10.766Z" tests="1" failures="0" errors="0" time="0.335">
+    <testcase name="Response status code is 200" time="0.335" classname="IntegrationTestsLoginMagwV2LoginSignout"/>
+  </testsuite>
+  <testsuite name="IntegrationTests / Login-magw-v2 / Load Login Form &amp; Get State Token From Redirect" id="aff025ff-dd3d-422a-b056-e09a0943ec11" timestamp="2024-10-09T09:42:10.766Z" tests="2" failures="0" errors="0" time="0.402">
+    <testcase name="Status code is 200" time="0.402" classname="IntegrationTestsLoginMagwV2LoadLoginFormAmpGetStateTokenFromRedirect"/>
+    <testcase name="Get Value of State Token" time="0.402" classname="IntegrationTestsLoginMagwV2LoadLoginFormAmpGetStateTokenFromRedirect"/>
+  </testsuite>
+  <testsuite name="IntegrationTests / Login-magw-v2 / MySPH login" id="1ab4c4f0-ef4c-4851-b450-f02001d7796b" timestamp="2024-10-09T09:42:10.766Z" tests="5" failures="0" errors="0" time="0.455">
+    <testcase name="Response status code is 200" time="0.455" classname="IntegrationTestsLoginMagwV2MySphLogin"/>
+    <testcase name="State token is present in the response" time="0.455" classname="IntegrationTestsLoginMagwV2MySphLogin"/>
+    <testcase name="User object is present in the response" time="0.455" classname="IntegrationTestsLoginMagwV2MySphLogin"/>
+    <testcase name="Target object is present in the response" time="0.455" classname="IntegrationTestsLoginMagwV2MySphLogin"/>
+    <testcase name="Authentication object is present in the response" time="0.455" classname="IntegrationTestsLoginMagwV2MySphLogin"/>
+  </testsuite>
+  <testsuite name="IntegrationTests / Login-magw-v2 / Enter login details state token" id="f6732fe5-1ee1-4151-b2e4-c1e37b8d6cc6" timestamp="2024-10-09T09:42:10.766Z" tests="2" failures="0" errors="0" time="0.281">
+    <testcase name="Status code is 302" time="0.281" classname="IntegrationTestsLoginMagwV2EnterLoginDetailsStateToken"/>
+    <testcase name="Auth Code Fetch" time="0.281" classname="IntegrationTestsLoginMagwV2EnterLoginDetailsStateToken"/>
+  </testsuite>
+  <testsuite name="IntegrationTests / Login-magw-v2 / Mobile login" id="9ad6685c-2906-4d9f-92b5-797b96964738" timestamp="2024-10-09T09:42:10.766Z" tests="1" failures="0" errors="0" time="3.196">
+    <testcase name="Set Token" time="3.196" classname="IntegrationTestsLoginMagwV2MobileLogin"/>
+  </testsuite>
+</testsuites>
