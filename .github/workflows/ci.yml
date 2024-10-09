@@ -73,7 +73,7 @@ jobs:
        # 9 Add this step to use GITHUB_TOKEN for authentication
       - name: Push changes to repository
         run: |
-          git add postman/allure-results
+          git add .
           git commit -m "Auto-commit: Upload Allure Report"
           git push --force --set-upstream origin gh-pages
         env:
