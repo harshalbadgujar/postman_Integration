@@ -45,7 +45,6 @@ jobs:
             -e DevelopmentConsolidated.postman_environment.json --ignore-redirects \
             --reporters cli,junit \
             --reporter-junit-export results.xml
-            --reporter-allure-export postman/allure-results
             
       # 6. Install Allure for report generation
       - name: Install Allure
